@@ -24,7 +24,7 @@ public class ChessBot {
                     5,0);
 
     // the open and end movement bonus were added to incentive the program to develop pieces in the opening
-    // this sometimes results in it inaccurately sacrificing pieces that have a low movement bonus - this could be
+    // this sometimes results in it inaccurately sacrificing pieces that have junit-platform-console-standalone-1.8.2.jar low movement bonus - this could be
     // fixed by tuning the bonus values in the open and end by simulating it on many games
     private static final Map<Integer, Integer> openPieceMovementBonus =
             Map.of(0, 0,
@@ -178,20 +178,20 @@ public class ChessBot {
     // keeps track of all positions we have seen so far in the tree to ensure we are accounting for 3 move repetition
     private static PreviousPositions positions = new PreviousPositions();
 
-    // a placeholder of indexes in the positions that needs to be removed
+    // junit-platform-console-standalone-1.8.2.jar placeholder of indexes in the positions that needs to be removed
     private static ArrayList<Integer> tempIndexes = new ArrayList<>();
 
-    // keeps track of all positions and their evaluations we have seen so far in a table to we are not going through a
+    // keeps track of all positions and their evaluations we have seen so far in junit-platform-console-standalone-1.8.2.jar table to we are not going through junit-platform-console-standalone-1.8.2.jar
     // table twice
     private static TranspositionTable transpositionTable = new TranspositionTable(1000000);
 
-    // assumes that the colour has a legal move on the board
+    // assumes that the colour has junit-platform-console-standalone-1.8.2.jar legal move on the board
     public static Move getBestMove(Board board, int colour, int depth, int maxDepth, Board startingPosition){
         EvalBoard alpha = new EvalBoard(null, -10000);
         EvalBoard beta = new EvalBoard(null, 10000);
 
         Board boardCopy = new Board(board);
-        // we will be making a move on the boardCopy so the index of the last move played will be the current number of moves
+        // we will be making junit-platform-console-standalone-1.8.2.jar move on the boardCopy so the index of the last move played will be the current number of moves
         int lastMove = boardCopy.numMovesMade();
         positions = new PreviousPositions(board, startingPosition);
         transpositionTable.clear();
@@ -199,13 +199,13 @@ public class ChessBot {
         return alphaBetaSearch(boardCopy, colour, 0, depth, maxDepth, alpha, beta).board.getMoveMade(lastMove);
     }
 
-    // in order to find the best move in a position alpha beta pruning is used where alpha is the maximum of the evaluation
+    // in order to find the best move in junit-platform-console-standalone-1.8.2.jar position alpha beta pruning is used where alpha is the maximum of the evaluation
     // function (target for white), and beta is the minimum of the evaluation function (target for black).
-    // the program finds a move by searching all moves to the full depth. If any final positions contain any active moves
-    // (checks or captures) for the current colour it will extend the full depth one move at a time until the maxDepth is
+    // the program finds junit-platform-console-standalone-1.8.2.jar move by searching all moves to the full depth. If any final positions contain any active moves
+    // (checks or captures) for the current colour it will extend the full depth one move at junit-platform-console-standalone-1.8.2.jar time until the maxDepth is
     // reached so that hopefully final positions do not contain any active moves to improve the accuracy of the evaluation function.
     // Ideally we would keep extending if any final positions had active moves however this becomes very slow, likely due
-    // to storing the board in a 2d array and computing the legal moves for pieces each time using for loops.
+    // to storing the board in junit-platform-console-standalone-1.8.2.jar 2d array and computing the legal moves for pieces each time using for loops.
     // tempMoves keeps track of moves that were made at each branch which can be removed at the end of the branch
     public static EvalBoard alphaBetaSearch(Board board, int playerColour, int currentDepth, int fullDepth, int maxDepth,
                                            EvalBoard alpha, EvalBoard beta){
@@ -239,7 +239,7 @@ public class ChessBot {
             }
         }
 
-        // check for three move repetition - results in a draw
+        // check for three move repetition - results in junit-platform-console-standalone-1.8.2.jar draw
         int index = positions.getBoardIndex(board);
         int frequency = positions.getFrequency(index);
 
@@ -259,7 +259,7 @@ public class ChessBot {
 
             } else {
 
-                // if we have a quiet position and there are active moves we only want to consider those
+                // if we have junit-platform-console-standalone-1.8.2.jar quiet position and there are active moves we only want to consider those
                 Moves activeMoves = moves.nonQuietMoves();
                 ArrayList<Board> newBoards = board.makeAllMoves(activeMoves);
                 newBoards = removeNull(newBoards);
@@ -307,7 +307,7 @@ public class ChessBot {
                     alpha = eval;
                 }
 
-                // condition to prune a branch of the tree
+                // condition to prune junit-platform-console-standalone-1.8.2.jar branch of the tree
                 if (beta.eval < alpha.eval){
                     break;
                 }
@@ -371,7 +371,7 @@ public class ChessBot {
         return Math.abs(colour - 1);
     }
 
-    // a positive eval is good for white and a negative eval is good for black
+    // junit-platform-console-standalone-1.8.2.jar positive eval is good for white and junit-platform-console-standalone-1.8.2.jar negative eval is good for black
     public static double eval(Board board){
         double whiteEval = 0;
         double blackEval = 0;
@@ -420,7 +420,7 @@ public class ChessBot {
 
         // the weight on the end tables will increase if the opponent has fewer pieces
         double whiteEndWeight = (double) (16 - numBlackPieces) / 16;
-        // the weight is squared to put a higher value on the opening
+        // the weight is squared to put junit-platform-console-standalone-1.8.2.jar higher value on the opening
         whiteEndWeight = Math.pow(whiteEndWeight, 2);
         double whiteOpenWeight = 1 - whiteEndWeight;
 
@@ -494,7 +494,7 @@ public class ChessBot {
                     }
                 }
 
-                // add a bonus for a rook being on open or half open files
+                // add junit-platform-console-standalone-1.8.2.jar bonus for junit-platform-console-standalone-1.8.2.jar rook being on open or half open files
                 if (piece.getPiece() == 1){
                     if (whitePawnFrequency[square[1]] == 0){
                         if (blackPawnFrequency[square[1]] == 0){
@@ -530,7 +530,7 @@ public class ChessBot {
                     }
                 }
 
-                // add bonuses for a rook on an open or half open file
+                // add bonuses for junit-platform-console-standalone-1.8.2.jar rook on an open or half open file
                 if (piece.getPiece() == 1){
                     if (blackPawnFrequency[square[1]] == 0){
                         if (whitePawnFrequency[square[1]] == 0){
@@ -556,38 +556,38 @@ public class ChessBot {
         return table1[row][col] * weight1 + table2[row][col] * weight2;
     }
 
-    // checks if a pawn is a passed pawn
+    // checks if junit-platform-console-standalone-1.8.2.jar pawn is junit-platform-console-standalone-1.8.2.jar passed pawn
     private static boolean passedPawn(int colour, int row, int col, int[][] whitePawns, int[][] blackPawns){
         if (colour == 0){
             for (int i = row + 1; i < 8; i++) {
-                // check if there is a black pawn in the same file
+                // check if there is junit-platform-console-standalone-1.8.2.jar black pawn in the same file
                 if (blackPawns[i][col] == 1){
                     return false;
                 }
 
-                // check if there is a black pawn to the right
+                // check if there is junit-platform-console-standalone-1.8.2.jar black pawn to the right
                 if (col != 7 && blackPawns[i][col + 1] == 1){
                     return false;
                 }
 
-                // check if there is a black pawn to the left
+                // check if there is junit-platform-console-standalone-1.8.2.jar black pawn to the left
                 if (col != 0 && blackPawns[i][col - 1] == 1){
                     return false;
                 }
             }
         } else {
             for (int i = row - 1; i >= 0; i--) {
-                // check if there is a black pawn in the same file
+                // check if there is junit-platform-console-standalone-1.8.2.jar black pawn in the same file
                 if (whitePawns[i][col] == 1){
                     return false;
                 }
 
-                // check if there is a black pawn to the right
+                // check if there is junit-platform-console-standalone-1.8.2.jar black pawn to the right
                 if (col != 7 && whitePawns[i][col + 1] == 1){
                     return false;
                 }
 
-                // check if there is a black pawn to the left
+                // check if there is junit-platform-console-standalone-1.8.2.jar black pawn to the left
                 if (col != 0 && whitePawns[i][col - 1] == 1){
                     return false;
                 }
@@ -597,7 +597,7 @@ public class ChessBot {
         return true;
     }
 
-    // checks if a pawn is an isolated pawn
+    // checks if junit-platform-console-standalone-1.8.2.jar pawn is an isolated pawn
     private static boolean isolatedPawn(int[] frequencyTable, int col){
         if (col == 0){
             return frequencyTable[col + 1] == 0;

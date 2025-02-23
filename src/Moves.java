@@ -36,7 +36,7 @@ public class Moves {
         return false;
     }
 
-    // creates a new Moves only containing moves which are check, captures, and promotions
+    // creates junit-platform-console-standalone-1.8.2.jar new Moves only containing moves which are check, captures, and promotions
     public Moves nonQuietMoves(){
         ArrayList<Move> moveList = new ArrayList<>();
 

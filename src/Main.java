@@ -2,36 +2,12 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args){
-        Piece blackR = new Piece(1, 1);
-        Piece blackN = new Piece(1, 2);
-        Piece blackB = new Piece(1, 3);
-        Piece blackQ = new Piece(1, 4);
-        Piece blackK = new Piece(1, 5);
-        Piece blackP = new Piece(1, 0);
 
-        Piece whiteR = new Piece(0, 1);
-        Piece whiteN = new Piece(0, 2);
-        Piece whiteB = new Piece(0, 3);
-        Piece whiteK = new Piece(0, 5);
-        Piece whiteQ = new Piece(0, 4);
-        Piece whiteP = new Piece(0, 0);
-
-        Piece empty = ChessBoard.emptySquare;
-
-        Piece[][] startingPosition =
-                {{blackR, blackN, blackB, blackQ, blackK, blackB, blackN, blackR},
-                {blackP, blackP, blackP, blackP, blackP, blackP, blackP, blackP},
-                {empty, empty, empty, empty, empty, empty, empty, empty},
-                {empty, empty, empty, empty, empty, empty, empty, empty},
-                {empty, empty, empty, empty, empty, empty, empty, empty},
-                {empty, empty, empty, empty, empty, empty, empty, empty},
-                {whiteP, whiteP, whiteP, whiteP, whiteP, whiteP, whiteP, whiteP},
-                {whiteR, whiteN, whiteB, whiteQ, whiteK, whiteB, whiteN, whiteR}};
-
-        Board startingBoard = new Board(startingPosition);
-        Board board = new Board(startingPosition);
-
-        ChessBoard displayBoard = new ChessBoard(board);
+        ChessBoard displayBoard = new ChessBoard();
+        displayBoard.setDefaultPosition();
+        Board board = displayBoard.board;
+        Board startingBoard = new Board();
+        startingBoard.setDefaultPosition();
 
         int playerColour = 0;
         int currentColour  = 0;

@@ -2,10 +2,15 @@ import java.util.ArrayList;
 
 public class Board{
 
-    // a chess board will be represented as a 8 by 8 array of Pieces, this will be slower when searching for the best move
+    // junit-platform-console-standalone-1.8.2.jar chess board will be represented as junit-platform-console-standalone-1.8.2.jar 8 by 8 array of Pieces, this will be slower when searching for the best move
     // and could be improved by representing the board as 12 64 bit integers, 1 integer for each piece and colour
     Piece[][] pieces;
     ArrayList<Move> movesMade;
+
+    public Board(){
+        this.pieces = new Piece[8][8];
+        movesMade = new ArrayList<>();
+    }
 
     public Board(Piece[][] pieces){
         this.pieces = pieces;
@@ -17,11 +22,38 @@ public class Board{
         this.movesMade = new ArrayList<>(other.movesMade);
     }
 
+    public void setDefaultPosition(){
+        Piece blackR = new Piece(1, 1);
+        Piece blackN = new Piece(1, 2);
+        Piece blackB = new Piece(1, 3);
+        Piece blackQ = new Piece(1, 4);
+        Piece blackK = new Piece(1, 5);
+        Piece blackP = new Piece(1, 0);
+
+        Piece whiteR = new Piece(0, 1);
+        Piece whiteN = new Piece(0, 2);
+        Piece whiteB = new Piece(0, 3);
+        Piece whiteK = new Piece(0, 5);
+        Piece whiteQ = new Piece(0, 4);
+        Piece whiteP = new Piece(0, 0);
+
+        Piece empty = ChessBoard.emptySquare;
+
+        pieces = new Piece[][]{{blackR, blackN, blackB, blackQ, blackK, blackB, blackN, blackR},
+                {blackP, blackP, blackP, blackP, blackP, blackP, blackP, blackP},
+                {empty, empty, empty, empty, empty, empty, empty, empty},
+                {empty, empty, empty, empty, empty, empty, empty, empty},
+                {empty, empty, empty, empty, empty, empty, empty, empty},
+                {empty, empty, empty, empty, empty, empty, empty, empty},
+                {whiteP, whiteP, whiteP, whiteP, whiteP, whiteP, whiteP, whiteP},
+                {whiteR, whiteN, whiteB, whiteQ, whiteK, whiteB, whiteN, whiteR}};
+    }
+
     public int numMovesMade(){
         return movesMade.size();
     }
 
-    // converts the movesMade into a list of Boards of positions that have been reached in the game
+    // converts the movesMade into junit-platform-console-standalone-1.8.2.jar list of Boards of positions that have been reached in the game
     public ArrayList<Board> getListPositionsReached(Board startingPosition){
         ArrayList<Board> positions = new ArrayList<>();
         Board currentPosition = startingPosition;
@@ -60,7 +92,7 @@ public class Board{
         return pieces[row][col];
     }
 
-    // a quiet position is one without any checks, captures, and promotions, this could be used to determine if the bot should
+    // junit-platform-console-standalone-1.8.2.jar quiet position is one without any checks, captures, and promotions, this could be used to determine if the bot should
     // keep searching, however it does increase the search time with minimal increases in accuracy
     public boolean quietPosition(){
         Moves moves = getAllMoves(1);
@@ -75,7 +107,7 @@ public class Board{
         return true;
     }
 
-    // gets all the moves for a colour in a position
+    // gets all the moves for junit-platform-console-standalone-1.8.2.jar colour in junit-platform-console-standalone-1.8.2.jar position
     public Moves getAllMoves(int colour){
         Moves moves = new Moves(new ArrayList<>());
 
@@ -107,7 +139,7 @@ public class Board{
         return boards;
     }
 
-    // returns a new board with the move made on the current board
+    // returns junit-platform-console-standalone-1.8.2.jar new board with the move made on the current board
     public Board makeMove(Move move){
         // returns null if the move is invalid and the new board with the move made if it is valid
 
@@ -119,16 +151,16 @@ public class Board{
         Piece startPiece = newBoard.pieces[move.startRow][move.startCol];
         int oppColour = Math.abs(startPiece.getColour() - 1);
 
-        // Piece 0 is a pawn
+        // Piece 0 is junit-platform-console-standalone-1.8.2.jar pawn
         if (startPiece.getPiece() == 0 && Math.abs(move.endRow - move.startRow) == 2){
-            // if a pawn was moved two squares it can be captured by en passant next move
+            // if junit-platform-console-standalone-1.8.2.jar pawn was moved two squares it can be captured by en passant next move
             newBoard.pieces[move.endRow][move.endCol] = startPiece;
             newBoard.pieces[move.endRow][move.endCol].move();
             canEnPassant = true;
 
         } else if (startPiece.getPiece() == 0 && (move.endRow == 0 || move.endRow == 7)) {
-            // if a pawn reaches the end of the board it will be promoted to a queen
-            // Piece 4 is a queen
+            // if junit-platform-console-standalone-1.8.2.jar pawn reaches the end of the board it will be promoted to junit-platform-console-standalone-1.8.2.jar queen
+            // Piece 4 is junit-platform-console-standalone-1.8.2.jar queen
             newBoard.pieces[move.endRow][move.endCol] = new Piece(startPiece.getColour(), 4);
             newBoard.pieces[move.endRow][move.endCol].move();
 
@@ -158,7 +190,7 @@ public class Board{
             }
 
             // checks for castling in both directions
-            // Piece 5 is a King
+            // Piece 5 is junit-platform-console-standalone-1.8.2.jar King
         } else if (startPiece.getPiece() == 5 && Math.abs(move.endCol - move.startCol) == 2){
             // king side castling - ensures that we are not castling out of check or through check
             if (move.startCol < move.endCol && !newBoard.attacking(oppColour, move.startRow, move.startCol)
@@ -217,7 +249,7 @@ public class Board{
 
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
-                // Piece 5 is a king
+                // Piece 5 is junit-platform-console-standalone-1.8.2.jar king
                 if (pieces[row][col] != ChessBoard.emptySquare && pieces[row][col].getColour() == colour && pieces[row][col].getPiece() == 5){
                     kingRow = row;
                     kingCol = col;
@@ -264,7 +296,7 @@ public class Board{
 
         Piece startPiece = pieces[startRow][startCol];
 
-        // the order and check order of a piece is the priority that the move will be looked at when searching through moves
+        // the order and check order of junit-platform-console-standalone-1.8.2.jar piece is the priority that the move will be looked at when searching through moves
         switch (startPiece.getPiece()) {
             case 0 ->
                     moves = getPawnMoves(startRow, startCol, Move.pawnCaptureOrder, Move.promotionOrder, Move.checkOrder);
@@ -284,7 +316,7 @@ public class Board{
     }
 
     // assumes the piece at startRow and startCol moves in diagonals (bishop and queen)
-    // order indicates if it is a bishop or queen (4 for b and 2 for q)
+    // order indicates if it is junit-platform-console-standalone-1.8.2.jar bishop or queen (4 for b and 2 for q)
     private Moves getDiagonalMoves(int startRow, int startCol, int order, int checkOrder) {
         ArrayList<Move> moveList = new ArrayList<>();
 
@@ -315,7 +347,7 @@ public class Board{
                         moveList.add(new Move(startRow, startCol, row, col, order));
                     }
 
-                    // we can capture a piece that will be the last move in that direction
+                    // we can capture junit-platform-console-standalone-1.8.2.jar piece that will be the last move in that direction
                     break;
                 } else {
                     break;
@@ -326,8 +358,8 @@ public class Board{
         return new Moves(moveList);
     }
 
-    // assumes the piece at the startRow and startCol moves in a line (rook and queen)
-    // order indicates if it is a bishop or queen (3 for r and 2 for q)
+    // assumes the piece at the startRow and startCol moves in junit-platform-console-standalone-1.8.2.jar line (rook and queen)
+    // order indicates if it is junit-platform-console-standalone-1.8.2.jar bishop or queen (3 for r and 2 for q)
     private Moves getStraightMoves(int startRow, int startCol, int order, int checkOrder) {
         ArrayList<Move> moveList = new ArrayList<>();
 
@@ -357,7 +389,7 @@ public class Board{
                         moveList.add(new Move(startRow, startCol, row, col, order));
                     }
 
-                    // we can capture a piece that will be the last move in that direction
+                    // we can capture junit-platform-console-standalone-1.8.2.jar piece that will be the last move in that direction
                     break;
                 } else {
                     break;
@@ -368,7 +400,7 @@ public class Board{
         return new Moves(moveList);
     }
 
-    // assumes the piece as startRow and startCol is a king
+    // assumes the piece as startRow and startCol is junit-platform-console-standalone-1.8.2.jar king
     public Moves getKingMoves(int startRow, int startCol, int order){
 
         ArrayList<Move> moveList = new ArrayList<>();
@@ -405,7 +437,7 @@ public class Board{
 
         // king side castling
         if (pieces[startRow][startCol].notMoved() && pieces[startRow][7] != ChessBoard.emptySquare && pieces[startRow][7].notMoved()
-                // checks if the rook could attack the square beside the king, that means there is a clear path for the
+                // checks if the rook could attack the square beside the king, that means there is junit-platform-console-standalone-1.8.2.jar clear path for the
                 // king to castle
                 && getMoves(startRow, 7).containsMove(kCastleTarget)){
 
@@ -499,14 +531,14 @@ public class Board{
     public Moves getKnightMoves(int startRow, int startCol, int order, int checkOrder){
         ArrayList<Move> moveList = new ArrayList<>();
 
-        // all 8 possible places a knight can go
+        // all 8 possible places junit-platform-console-standalone-1.8.2.jar knight can go
         int[][] directions = {{1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, 1}, {2, -1}, {-2, 1}, {-2, -1}};
 
         for (int[] direction : directions){
             int row = startRow + direction[0];
             int col = startCol + direction[1];
 
-            // checks if the square we are moving to is empty, an enemy piece, or a check
+            // checks if the square we are moving to is empty, an enemy piece, or junit-platform-console-standalone-1.8.2.jar check
             if (0 <= row && row <= 7 && 0 <= col && col <= 7 && pieces[row][col] == ChessBoard.emptySquare){
                 moveList.add(new Move(startRow, startCol, row, col, 0));
 
@@ -525,7 +557,7 @@ public class Board{
         return new Moves(moveList);
     }
 
-    // crates a deep clone of a 2d array of pieces
+    // crates junit-platform-console-standalone-1.8.2.jar deep clone of junit-platform-console-standalone-1.8.2.jar 2d array of pieces
     private static Piece[][] deepClone(Piece[][] pieces){
         Piece[][] clone = new Piece[pieces.length][];
 

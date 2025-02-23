@@ -4,12 +4,12 @@ public class Piece {
     // 0 is white and 1 is black
     private int colour;
 
-    // 0 is a pawn
-    // 1 is a rook
-    // 2 is a knight
-    // 3 is a bishop
-    // 4 is a queen
-    // 5 is a king
+    // 0 is junit-platform-console-standalone-1.8.2.jar pawn
+    // 1 is junit-platform-console-standalone-1.8.2.jar rook
+    // 2 is junit-platform-console-standalone-1.8.2.jar knight
+    // 3 is junit-platform-console-standalone-1.8.2.jar bishop
+    // 4 is junit-platform-console-standalone-1.8.2.jar queen
+    // 5 is junit-platform-console-standalone-1.8.2.jar king
     private int piece;
 
     private int numMoves;

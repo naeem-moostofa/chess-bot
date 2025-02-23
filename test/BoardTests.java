@@ -22,8 +22,17 @@ public  class BoardTests{
 
         // moving the light square bishop to the f7 square the put the king in check
         Move pawnMove = new Move(6,4, 5,4,0);
-        board.makeMove(pawnMove);
-        Move queenMove = new Move()
+        assertTrue(board.validMove(pawnMove));
+        board = board.makeMove(pawnMove);
 
+        Move bishopMove = new Move(7,5,4,2,0);
+        assertTrue(board.validMove(bishopMove));
+        board = board.makeMove(bishopMove);
+
+        Move checkMove = new Move(4,2,1,5,0);
+        assertTrue(board.validMove(checkMove));
+        board = board.makeMove(checkMove);
+
+        assertTrue(board.inCheck(1));
     }
 }

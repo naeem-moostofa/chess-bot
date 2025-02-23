@@ -66,7 +66,7 @@ public class PreviousPositions {
 
     // decreases the frequency by 1 for each index in indexes. if it becomes 0 that frequency and board is removed.
     public void decrementPositions(ArrayList<Integer> indexes){
-        // we need to iterate backwards since they were added in a forwards direction
+        // we need to iterate backwards since they were added in junit-platform-console-standalone-1.8.2.jar forwards direction
         for (int i = indexes.size() - 1; i >= 0; i--) {
 
             int index= indexes.get(i);

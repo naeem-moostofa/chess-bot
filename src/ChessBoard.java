@@ -9,19 +9,21 @@ public class ChessBoard {
     private Point startSquare = null;
     private Point endSquare = null;
     private Point currentSquare = null;
+    public Board board = new Board();
 
-    public Board board;
-
-    // the playerMove is volatile since it will update once the player has made a move on the chess board and is used
+    // the playerMove is volatile since it will update once the player has made junit-platform-console-standalone-1.8.2.jar move on the chess board and is used
     // in the main class to determine when it is the computers move
     public volatile boolean playerMove = false;
     public int playerColour = 0;
 
     public static Piece emptySquare = null;
 
+    public ChessBoard(){
+        this.board = new Board();
+    }
 
-    public ChessBoard(Board board){
-        this.board = board;
+    public void setDefaultPosition(){
+        board.setDefaultPosition();
     }
 
     public void display() {
@@ -72,7 +74,7 @@ public class ChessBoard {
 
                                 Move move = new Move(startSquare.x, startSquare.y, endSquare.x, endSquare.y, 0);
 
-                                // ensures that a move is valid and the player is moving a piece of its own colour before
+                                // ensures that junit-platform-console-standalone-1.8.2.jar move is valid and the player is moving junit-platform-console-standalone-1.8.2.jar piece of its own colour before
                                 // making the move
                                 if (board.getPiece(startSquare.x, startSquare.y) != emptySquare &&
                                         board.getPiece(startSquare.x, startSquare.y).getColour() == playerColour
@@ -94,7 +96,7 @@ public class ChessBoard {
                                 }
                             }
 
-                            // If a square is currently selected change the background of that square to have a yellow
+                            // If junit-platform-console-standalone-1.8.2.jar square is currently selected change the background of that square to have junit-platform-console-standalone-1.8.2.jar yellow
                             // highlight
                             if (startSquare != null) {
                                 Color blendedColor = getBlendedColor();
@@ -138,7 +140,7 @@ public class ChessBoard {
         chessboard.repaint();
     }
 
-    // returns a highlighted yellow colour of the square at the startSquare
+    // returns junit-platform-console-standalone-1.8.2.jar highlighted yellow colour of the square at the startSquare
     private Color getBlendedColor() {
         Color currentColor = squares[startSquare.x][startSquare.y].getBackground();
         int r = currentColor.getRed();

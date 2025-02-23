@@ -21,7 +21,7 @@ public class TranspositionTable {
             }
         };
 
-        // random numbers are generated in order to create a unique number for each position
+        // random numbers are generated in order to create junit-platform-console-standalone-1.8.2.jar unique number for each position
         SecureRandom random = new SecureRandom();
         for (int row = 0; row < BOARD_SIZE; row++) {
             for (int col = 0; col < BOARD_SIZE; col++) {
@@ -36,7 +36,7 @@ public class TranspositionTable {
         table.clear();
     }
 
-    // generates a unique number for each chess board
+    // generates junit-platform-console-standalone-1.8.2.jar unique number for each chess board
     public long computeZobristHash(Board board) {
         long hash = 0L;
         for (int row = 0; row < BOARD_SIZE; row++) {
@@ -51,7 +51,7 @@ public class TranspositionTable {
         return hash;
     }
 
-    // adds a board to the table
+    // adds junit-platform-console-standalone-1.8.2.jar board to the table
     public void put(Long zobristHash, double eval, int depth, EvalBoard alpha, EvalBoard beta) {
         table.put(zobristHash, new TranspositionTableEntry(eval, depth, alpha, beta));
     }
