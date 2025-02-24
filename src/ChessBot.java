@@ -445,29 +445,35 @@ public class ChessBot {
 
             // for each piece gets the appropriate tables
             switch (piece.getPiece()){
-                case 0 -> {
+                case 0: {
                     openTable = openP;
                     endTable = endP;
+                    break;
                 }
-                case 3 -> {
+                case 3: {
                     openTable = openB;
                     endTable = endB;
+                    break;
                 }
-                case 2 -> {
+                case 2: {
                     openTable = openN;
                     endTable = endN;
+                    break;
                 }
-                case 1 -> {
+                case 1: {
                     openTable = openR;
                     endTable = endR;
+                    break;
                 }
-                case 4 -> {
+                case 4: {
                     openTable = openQ;
                     endTable = endQ;
+                    break;
                 }
-                case 5 -> {
+                case 5: {
                     openTable = openK;
                     endTable = endK;
+                    break;
                 }
             }
 

@@ -298,16 +298,25 @@ public class Board{
 
         // the order and check order of junit-platform-console-standalone-1.8.2.jar piece is the priority that the move will be looked at when searching through moves
         switch (startPiece.getPiece()) {
-            case 0 ->
+            case 0:
                     moves = getPawnMoves(startRow, startCol, Move.pawnCaptureOrder, Move.promotionOrder, Move.checkOrder);
-            case 1 -> moves = getStraightMoves(startRow, startCol, Move.rookCaptureOrder, Move.checkOrder);
-            case 2 -> moves = getKnightMoves(startRow, startCol, Move.knightCaptureOrder, Move.checkOrder);
-            case 3 -> moves = getDiagonalMoves(startRow, startCol, Move.bishopCaptureOrder, Move.checkOrder);
-            case 5 -> moves = getKingMoves(startRow, startCol, Move.kingCaptureOrder);
-            default -> {
+                    break;
+            case 1:
+                moves = getStraightMoves(startRow, startCol, Move.rookCaptureOrder, Move.checkOrder);
+                break;
+            case 2:
+                moves = getKnightMoves(startRow, startCol, Move.knightCaptureOrder, Move.checkOrder);
+                break;
+            case 3:
+                moves = getDiagonalMoves(startRow, startCol, Move.bishopCaptureOrder, Move.checkOrder);
+                break;
+            case 5:
+                moves = getKingMoves(startRow, startCol, Move.kingCaptureOrder);
+                break;
+            default:
                 moves = getStraightMoves(startRow, startCol, Move.queenCaptureOrder, Move.checkOrder);
                 moves.combine(getDiagonalMoves(startRow, startCol, Move.queenCaptureOrder, Move.checkOrder));
-            }
+                break;
         }
 
         return moves;

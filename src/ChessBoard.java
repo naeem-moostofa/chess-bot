@@ -182,21 +182,45 @@ public class ChessBoard {
 
         if (piece.getColour() == 0) {
             switch (piece.getPiece()) {
-                case 0 -> path = "src/pieceImages/white-pawn.png";
-                case 1 -> path = "src/pieceImages/white-rook.png";
-                case 2 -> path = "src/pieceImages/white-knight.png";
-                case 3 -> path = "src/pieceImages/white-bishop.png";
-                case 5 -> path = "src/pieceImages/white-king.png";
-                case 4 -> path = "src/pieceImages/white-queen.png";
+                case 0:
+                    path = "src/pieceImages/white-pawn.png";
+                    break;
+                case 1:
+                    path = "src/pieceImages/white-rook.png";
+                    break;
+                case 2:
+                    path = "src/pieceImages/white-knight.png";
+                    break;
+                case 3:
+                    path = "src/pieceImages/white-bishop.png";
+                    break;
+                case 5:
+                    path = "src/pieceImages/white-king.png";
+                    break;
+                case 4:
+                    path = "src/pieceImages/white-queen.png";
+                    break;
             }
         } else {
             switch (piece.getPiece()) {
-                case 0 -> path = "src/pieceImages/black-pawn.png";
-                case 1 -> path = "src/pieceImages/black-rook.png";
-                case 2 -> path = "src/pieceImages/black-knight.png";
-                case 3 -> path = "src/pieceImages/black-bishop.png";
-                case 5 -> path = "src/pieceImages/black-king.png";
-                case 4 -> path = "src/pieceImages/black-queen.png";
+                case 0:
+                    path = "src/pieceImages/black-pawn.png";
+                    break;
+                case 1:
+                    path = "src/pieceImages/black-rook.png";
+                    break;
+                case 2:
+                    path = "src/pieceImages/black-knight.png";
+                    break;
+                case 3:
+                    path = "src/pieceImages/black-bishop.png";
+                    break;
+                case 5:
+                    path = "src/pieceImages/black-king.png";
+                    break;
+                case 4:
+                    path = "src/pieceImages/black-queen.png";
+                    break;
             }
         }
 
