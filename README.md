@@ -1,6 +1,6 @@
 # chess-bot
-[![Java CI](https://github.com/naeem-moostofa/chess-bot/actions/workflows/ci.yml/badge.svg)](https://github.com/naeem-moostofa/chess-bot/actions/workflows/ci.yml)
 ![Java](https://img.shields.io/badge/language-Java-blue)
+[![Java CI](https://github.com/naeem-moostofa/chess-bot/actions/workflows/ci.yml/badge.svg)](https://github.com/naeem-moostofa/chess-bot/actions/workflows/ci.yml)
 ![License](https://img.shields.io/github/license/naeem-moostofa/chess-bot)
 
 A Chess Interface where you can play against a computer.
